@@ -1,0 +1,81 @@
+name:                AdventOfCode2021
+version:             2021.0
+github:              "p-kostic/AdventOfCode2021"
+license:             BSD3
+author:              "Petar Kostic"
+maintainer:          "p-kostic@acto.nl"
+copyright:           "2021 Sam Coy" # regarding the template 
+
+extra-source-files:
+- README.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Petar Kostic's solutions to the Advent of Code 2021 in Haskell
+
+dependencies:
+- base >= 4.7 && < 5
+- time
+- ansi-terminal
+- directory
+- optparse-applicative
+- parser-combinators
+- attoparsec
+- containers
+- text
+- mtl
+- vector
+- pointedlist
+
+library:
+  source-dirs: src
+  default-extensions:
+    - EmptyCase
+    - FlexibleContexts
+    - FlexibleInstances
+    - InstanceSigs
+    - MultiParamTypeClasses
+    - LambdaCase
+    - MultiWayIf
+    - RecordWildCards
+    - TupleSections
+    - OverloadedStrings
+    - ScopedTypeVariables
+    - GADTs
+    - NumericUnderscores
+    - DeriveFunctor
+    - DeriveFoldable
+    - DeriveTraversable
+
+executables:
+  aoc-template-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    default-extensions:
+    - EmptyCase
+    - FlexibleContexts
+    - FlexibleInstances
+    - InstanceSigs
+    - MultiParamTypeClasses
+    - LambdaCase
+    - MultiWayIf
+    - RecordWildCards
+    - TupleSections
+    - OverloadedStrings
+    - ScopedTypeVariables
+    - GADTs
+    - NumericUnderscores
+    - DeriveFunctor
+    - DeriveFoldable
+    - DeriveTraversable
+    dependencies:
+    - AdventOfCode2021
