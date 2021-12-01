@@ -1,39 +1,35 @@
 module Days.Day01 (runDay) where
 
 {- ORMOLU_DISABLE -}
-import Data.List
-import Data.Map.Strict (Map)
-import qualified Data.Map.Strict as Map
-import Data.Maybe
-import Data.Set (Set)
-import qualified Data.Set as Set
-import Data.Vector (Vector)
-import qualified Data.Vector as Vec
-import qualified Util.Util as U
-
 import qualified Program.RunDay as R (runDay, Day)
 import Data.Attoparsec.Text
-import Data.Void
 {- ORMOLU_ENABLE -}
 
 runDay :: R.Day
 runDay = R.runDay inputParser partA partB
 
 ------------ PARSER ------------
+-- Unfamiliar with this template's parsing package, I'll keep some hoogle references here for future Days
+-- endOfLine :: Parser ()                             https://hackage.haskell.org/package/attoparsec-0.14.2/docs/Data-Attoparsec-ByteString-Char8.html#v:endOfLine
+-- decimal   :: Integral a => Parser a                https://hackage.haskell.org/package/attoparsec-0.14.2/docs/Data-Attoparsec-ByteString-Char8.html#v:decimal
+-- sepBy     :: Alternative f => f a -> f s -> f [a]  https://hackage.haskell.org/package/attoparsec-0.14.2/docs/Data-Attoparsec-ByteString.html#v:sepBy
 inputParser :: Parser Input
-inputParser = error "Not implemented yet!"
+inputParser = decimal `sepBy` endOfLine
 
 ------------ TYPES ------------
-type Input = Void
+type Input = [Int]
 
-type OutputA = Void
+type OutputA = Int
 
-type OutputB = Void
+type OutputB = Int
 
 ------------ PART A ------------
+-- Use zip to make tuples of sliding window
 partA :: Input -> OutputA
-partA = error "Not implemented yet!"
+partA xs = length (filter (uncurry (<)) (zip xs (tail xs)))
 
 ------------ PART B ------------
+-- Same sliding principle as PartA, but with zip3, summing tuple values as input to PartA
 partB :: Input -> OutputB
-partB = error "Not implemented yet!"
+partB xs = partA (map (\(a, b, c) -> a + b + c) (zip3 xs xs' (tail xs')))
+         where xs' = tail xs
